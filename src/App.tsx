@@ -7,7 +7,7 @@ function Welcome() {
     <div>
       <h1>Check out the Colleges in NCAA Basketball</h1>
       <br />
-      <img src="./" alt="down-chevron" />
+      <img src="./down-chevron.svg" alt="down-chevron" width={50} />
     </div>
   );
 }
