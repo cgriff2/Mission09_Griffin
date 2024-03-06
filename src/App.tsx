@@ -11,7 +11,7 @@ function Welcome() {
     </div>
   );
 }
-
+// set up interface
 function App() {
   interface CollegeProps {
     name: string;
@@ -57,7 +57,7 @@ function App() {
       </div>
     );
   }
-
+  // call functions and return the information in the index.tsx view
   return (
     <div className="App">
       <header className="App-header">
