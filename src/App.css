@@ -14,14 +14,27 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
+}
+
+.college-container {
+  padding: 20px; /* Adjust the padding as needed */
+  border: 1px solid #ccc; /* Optional: Add a border for visual separation */
+  margin-bottom: 10px; /* Optional: Add some margin between each college */
+  width: 500px;
+}
+
+.college-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-link {

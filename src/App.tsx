@@ -1,66 +1,58 @@
 import React from 'react';
 import './App.css';
+import teamsData from './CollegeBasketballTeams.json'; // Import the JSON file
+
+function Welcome() {
+  return (
+    <div>
+      <h1>Check out the Colleges in NCAA Basketball</h1>
+      <br />
+      <img src="mission9/public/down-chevron.png" alt="down-chevron" />
+    </div>
+  );
+}
 
 function App() {
-  interface BandProps {
+  interface CollegeProps {
     name: string;
-    members: string;
-    formed: number;
+    mascot: string;
+    city: string;
+    state: string;
   }
 
-  const bandNames = [
-    // JSON object
-    {
-      name: 'The Beastie Boys',
-      members: 'Ad Rock, MCA, Mike D',
-      formed: 1979,
-    },
-    {
-      name: 'Wolfmother',
-      members: 'Andrew Stockdale, Hamish Rosser, Bobby Poulton',
-      formed: 2004,
-    },
-    {
-      name: 'Cream',
-      members: 'Eric Clapton, Jack Bruce, Ginger Baker',
-      formed: 1966,
-    },
-    {
-      name: 'Nirvana',
-      members: 'Kurt Cobain, Dave Groul, Krist Novoselic',
-      formed: 1987,
-    },
-  ];
+  // use map to iterate over the teamsData.teams array in the json file
+  const collegeNames: CollegeProps[] = teamsData.teams.map((team: any) => ({
+    name: team.school,
+    mascot: team.name,
+    city: team.city,
+    state: team.state,
+  }));
 
-  function Welcome() {
-    return <h1>The Best Music Trio Ever</h1>;
-  }
-
-  class Band extends React.Component<BandProps> {
+  // For each team, extract the relevant attributes and map them to the CollegeProps interface,
+  // creating an object for each college.
+  class College extends React.Component<CollegeProps> {
     render() {
-      const oneBand = this.props;
+      const oneTeam = this.props;
 
       return (
-        <div>
-          <h2>{oneBand.name}</h2>
-          <h3>{oneBand.members}</h3>
-          <h3>{oneBand.formed}</h3>
+        <div className="college-container">
+          <h2>{oneTeam.name}</h2>
+          <h3>{oneTeam.mascot}</h3>
+          <h3>
+            {oneTeam.city}, {oneTeam.state}
+          </h3>
         </div>
       );
     }
   }
 
-  function BandList() {
+  // store the College objects in the collegeNames array, use the spread operator to
+  // pass the college attributes as props to each College component
+  function CollegeList() {
     return (
-      <div>
-        {/* same thing as below
-        <Band {...bandNames[0]} />
-        <Band {...bandNames[1]} />
-        <Band {...bandNames[2]} />
-        */}
-
-        {bandNames.map((bandNum) => (
-          <Band {...bandNum} />
+      <div className="college-list">
+        {collegeNames.map((collegeNum) => (
+          <College {...collegeNum} />
         ))}
       </div>
     );
@@ -70,8 +62,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Welcome />
-        <BandList />
       </header>
+      <body>
+        <CollegeList />
+      </body>
     </div>
   );
 }
